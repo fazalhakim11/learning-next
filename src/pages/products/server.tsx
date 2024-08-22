@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 
 type productType = {
   id: string;
@@ -8,16 +7,8 @@ type productType = {
   category: string;
 };
 
-const Products = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("api/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data.data);
-      });
-  }, []);
+const Products = (props: {products: productType[]}) => {
+  const products = props.products
 
   return (
     <div className="">
@@ -42,3 +33,14 @@ const Products = () => {
 };
 
 export default Products;
+
+export const getServerSideProps = async () => {
+    const res = await fetch('http://localhost:3000/api/products')
+    const response = await res.json()
+  return {
+    props: {
+        products: response.data
+    }
+  }
+}
+
