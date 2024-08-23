@@ -9,7 +9,7 @@ type productType = {
   category: string;
 };
 
-const DetailProduct = ({products} : { products: productType}) => {
+const DetailProduct = ({ products }: { products: productType }) => {
   const { query } = useRouter();
   const [data, setData] = useState<productType>();
 
@@ -24,10 +24,31 @@ const DetailProduct = ({products} : { products: productType}) => {
   }, [query.id]);
 
   return (
-    <div>
-      <h1>Detail Product</h1>
-      <p>Products: {data?.name}</p>
-      <p>Products: {products.name}</p>
+    <div className="flex justify-center gap-5 mt-5">
+      <div className="basis-[20%]">
+        <h1>Detail Product CSR</h1>
+        <img src={data?.image} alt="" />
+        <h1 className="font-bold">{data?.name}</h1>
+        <p className="text-[#515151]">{data?.category}</p>
+        <p className="font-bold">
+          {data?.price.toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+          })}
+        </p>
+      </div>
+      <div className="basis-[20%]">
+        <h1>Detail Product SSR/SSG</h1>
+        <img src={products.image} alt="" />
+        <h1 className="font-bold">{products.name}</h1>
+        <p className="text-[#515151]">{products.category}</p>
+        <p className="font-bold">
+          {products.price.toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+          })}
+        </p>
+      </div>
     </div>
   );
 };
