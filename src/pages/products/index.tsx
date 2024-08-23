@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type productType = {
@@ -24,7 +25,7 @@ const Products = () => {
       <h1 className="text-xl font-bold text-center">Products</h1>
       <div className="flex justify-center">
         {products.map((product: productType) => (
-          <div key={product.id} className="basis-[20%]">
+          <Link href={`/products/${product.id}`} key={product.id} className="basis-[20%]">
             <img src={product.image} alt="" />
             <h1 className="font-bold">{product.name}</h1>
             <p className="text-[#515151]">{product.category}</p>
@@ -34,7 +35,7 @@ const Products = () => {
                 currency: "IDR",
               })}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
