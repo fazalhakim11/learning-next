@@ -60,7 +60,7 @@ export const getServerSideProps = async ({
 }: {
   params: { id: string };
 }) => {
-  const res = await fetch(`http://localhost:3000/api/products/${params.id}`);
+  const res = await fetch(`${process.env.URL}/api/products/${params.id}`);
   const response = await res.json();
   return {
     props: {
@@ -70,7 +70,7 @@ export const getServerSideProps = async ({
 };
 
 // export const getStaticPaths = async () => {
-//   const res = await fetch("http://localhost:3000/api/products");
+//   const res = await fetch(`${process.env.URL}/api/products/`);
 //   const response = await res.json();
 
 //   const paths = response.data.map((product: productType) => ({
@@ -87,7 +87,7 @@ export const getServerSideProps = async ({
 // }: {
 //   params: { id: string };
 // }) => {
-//   const res = await fetch(`http://localhost:3000/api/products/${params.id}`);
+//   const res = await fetch(`${process.env.URL}/api/products/${params.id}`);
 //   const response = await res.json();
 //   return {
 //     props: {
