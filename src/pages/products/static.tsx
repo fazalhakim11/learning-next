@@ -12,7 +12,7 @@ const Products = (props: { products: productType[] }) => {
   return (
     <div className="">
       <h1 className="text-xl font-bold text-center">Products</h1>
-      {/* <div className="flex justify-center">
+      <div className="flex justify-center">
         {products.map((product: productType) => (
           <div key={product.id} className="basis-[20%]">
             <img src={product.image} alt="" />
@@ -26,7 +26,7 @@ const Products = (props: { products: productType[] }) => {
             </p>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
@@ -34,11 +34,12 @@ const Products = (props: { products: productType[] }) => {
 export default Products;
 
 export const getStaticProps = async () => {
-  // const res = await fetch(`${process.env.URL}/api/products`);
-  // const response = await res.json();
+  const res = await fetch(`${process.env.URL}/api/products`);
+  const response = await res.json();
   return {
-    props: {}
-    //   products: response.data,
-    // },
+    props: {
+      products: response.data,
+    },
+    revalidate: 10
   };
 };
