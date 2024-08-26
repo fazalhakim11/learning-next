@@ -1,10 +1,15 @@
 import {
+  addDoc,
   collection,
   doc,
   getDoc,
   getDocs,
   getFirestore,
+  query,
+  where,
 } from "firebase/firestore";
+import bcrypt from "bcrypt"
+
 import app from "./init";
 
 const firestore = getFirestore(app);
@@ -26,4 +31,35 @@ export const retrieveDataById = async (collectionName: string, id: string) => {
   const data = snapshot.data();
 
   return data;
+};
+
+export const signUp = async (
+  userData: {
+    email: string;
+    fullname: string;
+    password: string;
+    role?: string
+  },
+  callback: Function
+) => {
+  const q = query(
+    collection(firestore, "users"),
+    where("email", "==", userData.email)
+  );
+  const snapshot = await getDocs(q)
+  const data = snapshot.docs.map(doc=>({
+    id: doc.id,
+    ...doc.data()
+  }))
+  if(data.length > 0){
+    callback({status: false, message: "Email already exists"})
+  } else {
+    userData.password = await bcrypt.hash(userData.password, 10)
+    userData.role = "member"
+    await addDoc(collection(firestore, "users"), userData).then(()=>{
+      callback({status: true, message: "Register success"})
+    }).catch((error)=>{
+      callback({status: false, message: error})
+    })
+  }
 };
