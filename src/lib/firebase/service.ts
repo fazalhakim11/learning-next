@@ -11,6 +11,7 @@ import {
 import bcrypt from "bcrypt"
 
 import app from "./init";
+import exp from "constants";
 
 const firestore = getFirestore(app);
 
@@ -32,6 +33,25 @@ export const retrieveDataById = async (collectionName: string, id: string) => {
 
   return data;
 };
+
+export const signIn = async (userData: {
+  email: string
+}) =>{
+  const q = query(
+    collection(firestore, "users"),
+    where("email", "==", userData.email)
+  );
+  const snapshot = await getDocs(q)
+  const data = snapshot.docs.map(doc=>({
+    id: doc.id,
+    ...doc.data()
+  }))
+  if (data){
+    return data[0]
+  } else {
+    return null
+  }
+}
 
 export const signUp = async (
   userData: {
