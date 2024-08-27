@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -26,7 +27,8 @@ const Products = () => {
       <div className="flex justify-center">
         {products.map((product: productType) => (
           <Link href={`/products/${product.id}`} key={product.id} className="basis-[20%]">
-            <img src={product.image} alt="" />
+            {/* <img src={product.image} alt={product.name} /> */}
+            <Image src={product.image} alt={product.name} width={500} height={500}/>
             <h1 className="font-bold">{product.name}</h1>
             <p className="text-[#515151]">{product.category}</p>
             <p className="font-bold">
