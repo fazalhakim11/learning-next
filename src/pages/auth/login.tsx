@@ -83,7 +83,7 @@ const LoginPage = () => {
           })}>Login with Google</button>
       </div>
       <p className={style.login__link}>
-        Don't have an account? <Link href={"/auth/register"}>Register</Link>
+        Don{`'`}t have an account? <Link href={"/auth/register"}>Register</Link>
       </p>
     </div>
   );
