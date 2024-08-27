@@ -8,3 +8,11 @@
     font-weight: 700;
     justify-content: space-between;
   }
+
+.image {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px; 
+  align-self: center;
+  margin-right: 10px;
+}

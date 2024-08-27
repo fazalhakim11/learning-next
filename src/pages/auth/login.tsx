@@ -77,9 +77,13 @@ const LoginPage = () => {
             {isLoading ? "Loading..." : "Login"}
           </button>
         </form>
+          <button className={style.login__form__item__google} onClick={()=> signIn("google", {
+            redirect: false,
+            callbackUrl
+          })}>Login with Google</button>
       </div>
       <p className={style.login__link}>
-        Have an account? <Link href={"/auth/login"}>Login</Link>
+        Don't have an account? <Link href={"/auth/register"}>Register</Link>
       </p>
     </div>
   );
