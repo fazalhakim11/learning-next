@@ -19,4 +19,4 @@ export const authMiddleware = (req: NextRequest) => {
     return NextResponse.next()
 }
 
-export default withAuth(authMiddleware, ["/products", "/admin"])
+export default withAuth(authMiddleware, ["/admin"])
