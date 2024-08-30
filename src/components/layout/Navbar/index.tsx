@@ -5,7 +5,7 @@ const Navbar = () => {
   const { data }: any = useSession();
 
   return (
-    <div className={style.navbar}>
+    <nav className={style.navbar}>
       <h1>Navbar</h1>
       <div className="flex content-center">
         {data?.user?.image ? (
@@ -24,7 +24,7 @@ const Navbar = () => {
           <button onClick={() => signIn()}>Sign In</button>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 

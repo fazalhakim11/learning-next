@@ -22,11 +22,11 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="">
+    <div className="w-[85%] mx-auto">
       <h1 className="text-xl font-bold text-center">Products</h1>
-      <div className="flex justify-center">
+      <div className="flex flex-wrap gap-[4%] md:gap-0">
         {products.map((product: productType) => (
-          <Link href={`/products/${product.id}`} key={product.id} className="basis-[20%]">
+          <Link href={`/products/${product.id}`} key={product.id} className="basis-[48%] md:basis-[25%] mb-[15px]">
             {/* <img src={product.image} alt={product.name} /> */}
             <Image src={product.image} alt={product.name} width={500} height={500}/>
             <h1 className="font-bold">{product.name}</h1>
